@@ -126,5 +126,24 @@ namespace LinqSample.WithoutLinq
                 }
             }
         }
+
+        public static IEnumerable<int> YourGroup<T>(this IEnumerable<T> source, int sumCount, Func<T, int> selector)
+        {
+            var enumerator = source.GetEnumerator();
+            var index = 0;
+            var sum = 0;
+            while (enumerator.MoveNext())
+            {
+                index++;
+                sum += selector(enumerator.Current);
+                if (index == 3)
+                {
+                    yield return sum;
+                    index = sum = 0;
+                }
+            }
+
+            yield return sum;
+        }
     }
 }
