@@ -159,5 +159,25 @@ namespace LinqSample.WithoutLinq
 
             throw new NullReferenceException();
         }
+
+        public static T YourLast<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            var enumerator = source.GetEnumerator();
+            List<T> tmp = new List<T>();
+            while (enumerator.MoveNext())
+            {
+                if (predicate(enumerator.Current))
+                {
+                    tmp.Add(enumerator.Current);
+                }
+            }
+
+            if (tmp.Count > 0)
+            {
+                return tmp[tmp.Count - 1];
+            }
+
+            throw new NullReferenceException();
+        }
     }
 }

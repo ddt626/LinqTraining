@@ -184,8 +184,7 @@ namespace LinqTests
         public void Last()
         {
             var employees = RepositoryFactory.GetEmployees();
-            var actual = new Employee();
-            //var actual = WithoutLinq.YourLast(employees, e => e.Age > 30);
+            var actual = WithoutLinq.YourLast(employees, e => e.Age > 30);
 
             var expected = new Employee
             {
