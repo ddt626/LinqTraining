@@ -165,8 +165,7 @@ namespace LinqTests
         public void First()
         {
             var employees = RepositoryFactory.GetEmployees();
-            var actual = new Employee();
-            //var actual = WithoutLinq.YourFirst(employees, e => e.Age > 30);
+            var actual = WithoutLinq.YourFirst(employees, e => e.Age > 30);
 
             var expected = new Employee
             {

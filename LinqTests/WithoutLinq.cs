@@ -145,5 +145,19 @@ namespace LinqSample.WithoutLinq
 
             yield return sum;
         }
+
+        public static T YourFirst<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            var enumerator = source.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (predicate(enumerator.Current))
+                {
+                    return enumerator.Current;
+                }
+            }
+
+            throw new NullReferenceException();
+        }
     }
 }
